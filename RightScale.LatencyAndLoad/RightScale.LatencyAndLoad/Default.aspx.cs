@@ -27,12 +27,14 @@ namespace RightScale.LatencyAndLoad
 
             DateTime targetEnd = start.AddMilliseconds(latency);
 
-            while (targetEnd > DateTime.Now)
-            {
-                //loop it!
-            }
             DateTime end = DateTime.Now;
             TimeSpan span = end - start;
+
+            if (span.TotalMilliseconds > 0)
+            {
+                System.Threading.Thread.Sleep((int)span.TotalMilliseconds);
+            }
+
             int ms = (int)span.TotalMilliseconds;
             
             System.Diagnostics.Trace.WriteLine(latency.ToString() + "|" + ms.ToString() + "|" + responseData.Length.ToString());
