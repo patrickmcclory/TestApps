@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Diagnostics;
 using System.Configuration;
+using System.Threading;
 
 namespace RightScale.LatencyAndLoad
 {
@@ -31,9 +32,7 @@ namespace RightScale.LatencyAndLoad
             TimeSpan span = end - start;
 
             if (span.TotalMilliseconds > 0)
-            {
-                System.Threading.Thread.Sleep((int)span.TotalMilliseconds);
-            }
+                Thread.Sleep(span);
 
             int ms = (int)span.TotalMilliseconds;
             
